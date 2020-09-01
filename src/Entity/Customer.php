@@ -34,9 +34,6 @@ class Customer
      */
     private \DateTimeInterface $notificationHour;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private string $city;
 
     /**
@@ -44,6 +41,12 @@ class Customer
      * @ORM\JoinColumn(nullable=false)
      */
     private Language $language;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CityCoordinates::class, inversedBy="customers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private CityCoordinates $cityCoordinates;
 
     public function getId(): ?int
     {
@@ -106,6 +109,18 @@ class Customer
     public function setLanguage(?Language $language): self
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    public function getCityCoordinates(): ?CityCoordinates
+    {
+        return $this->cityCoordinates;
+    }
+
+    public function setCityCoordinates(?CityCoordinates $cityCoordinates): self
+    {
+        $this->cityCoordinates = $cityCoordinates;
 
         return $this;
     }
