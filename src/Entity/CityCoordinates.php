@@ -78,24 +78,24 @@ class CityCoordinates
         return $this;
     }
 
-    public function getLat(): ?string
+    public function getLat(): ?float
     {
         return $this->lat;
     }
 
-    public function setLat(string $lat): self
+    public function setLat(float $lat): self
     {
         $this->lat = $lat;
 
         return $this;
     }
 
-    public function getLng(): ?string
+    public function getLng(): ?float
     {
         return $this->lng;
     }
 
-    public function setLng(string $lng): self
+    public function setLng(float $lng): self
     {
         $this->lng = $lng;
 
