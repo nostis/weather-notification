@@ -1,2 +1,2 @@
 # weather-notification
-Api which allow save to weather newsletter
+Api which allows subscribing to weather newsletter
