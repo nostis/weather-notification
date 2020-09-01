@@ -25,6 +25,11 @@ class Language
     private string $language;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $code;
+
+    /**
      * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="language")
      */
     private Collection $customers;
@@ -53,6 +58,18 @@ class Language
     public function setLanguage(string $language): self
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
 
         return $this;
     }
