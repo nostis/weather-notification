@@ -29,9 +29,15 @@ class Language
      */
     private Collection $customers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Weather::class, mappedBy="language")
+     */
+    private Collection $weathers;
+
     public function __construct()
     {
         $this->customers = new ArrayCollection();
+        $this->weathers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,6 +82,37 @@ class Language
             // set the owning side to null (unless already changed)
             if ($customer->getLanguage() === $this) {
                 $customer->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Weather[]
+     */
+    public function getWeathers(): Collection
+    {
+        return $this->weathers;
+    }
+
+    public function addWeather(Weather $weather): self
+    {
+        if (!$this->weathers->contains($weather)) {
+            $this->weathers[] = $weather;
+            $weather->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWeather(Weather $weather): self
+    {
+        if ($this->weathers->contains($weather)) {
+            $this->weathers->removeElement($weather);
+            // set the owning side to null (unless already changed)
+            if ($weather->getLanguage() === $this) {
+                $weather->setLanguage(null);
             }
         }
 
