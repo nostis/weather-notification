@@ -17,33 +17,33 @@ class Customer
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private string $email;
 
     /**
      * @ORM\Column(type="time")
      */
-    private $notificationHour;
+    private \DateTimeInterface $notificationHour;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $city;
+    private string $city;
 
     /**
      * @ORM\ManyToOne(targetEntity=Language::class, inversedBy="customers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $language;
+    private Language $language;
 
     public function getId(): ?int
     {

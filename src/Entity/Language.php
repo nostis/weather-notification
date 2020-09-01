@@ -17,17 +17,17 @@ class Language
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $language;
+    private string $language;
 
     /**
      * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="language")
      */
-    private $customers;
+    private Collection $customers;
 
     public function __construct()
     {
