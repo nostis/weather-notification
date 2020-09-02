@@ -16,7 +16,7 @@ class WeatherApiResponseConverter
     {
         $response = $apiResponseData->toArray();
 
-        $todayDate = new \DateTime();
+        $todayDate = new \DateTime(); //without timezone feature
 
         foreach($response['daily'] as $dailyWeather) {
             $dateOfWeather = $dailyWeather['dt'];
@@ -34,7 +34,7 @@ class WeatherApiResponseConverter
     {
         $response = $apiResponseData->toArray();
 
-        $nextDayDate = ((new \DateTime())->add(new \DateInterval('P1D')));
+        $nextDayDate = ((new \DateTime())->add(new \DateInterval('P1D'))); //without timezone feature
 
         foreach($response['daily'] as $dailyWeather) {
             $dateOfWeather = $dailyWeather['dt'];
