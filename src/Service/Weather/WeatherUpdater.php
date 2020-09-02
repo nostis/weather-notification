@@ -32,7 +32,7 @@ class WeatherUpdater
     {
         $this->removeAllWeatherEntities();
 
-        $cityCoordinatesLanguageToUpdate = $this->getCitiesLanguageWhichRequireUpdate();
+        $cityCoordinatesLanguageToUpdate = $this->getCitiesLanguageAssignedToCustomers();
 
         /**
          * @var CityCoordinatesLanguageModel $cityCoordinateLanguage
@@ -89,7 +89,7 @@ class WeatherUpdater
         $this->entityManager->flush();
     }
 
-    private function getCitiesLanguageWhichRequireUpdate(): Collection //of CityCoordinatesLanguageModel
+    public function getCitiesLanguageAssignedToCustomers(): Collection //of CityCoordinatesLanguageModel
     {
         $citiesLanguage = new ArrayCollection();
         $customers = $this->entityManager->getRepository(Customer::class)->findAll();
