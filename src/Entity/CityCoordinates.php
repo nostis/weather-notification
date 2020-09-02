@@ -44,9 +44,15 @@ class CityCoordinates
      */
     private Collection $customers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Weather::class, mappedBy="cityCoordinates")
+     */
+    private Collection $weather;
+
     public function __construct()
     {
         $this->customers = new ArrayCollection();
+        $this->weather = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,6 +133,37 @@ class CityCoordinates
             // set the owning side to null (unless already changed)
             if ($customer->getCityCoordinates() === $this) {
                 $customer->setCityCoordinates(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Weather[]
+     */
+    public function getWeather(): Collection
+    {
+        return $this->weather;
+    }
+
+    public function addWeather(Weather $weather): self
+    {
+        if (!$this->weather->contains($weather)) {
+            $this->weather[] = $weather;
+            $weather->setCityCoordinates($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWeather(Weather $weather): self
+    {
+        if ($this->weather->contains($weather)) {
+            $this->weather->removeElement($weather);
+            // set the owning side to null (unless already changed)
+            if ($weather->getCityCoordinates() === $this) {
+                $weather->setCityCoordinates(null);
             }
         }
 

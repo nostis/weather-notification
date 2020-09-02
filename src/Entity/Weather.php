@@ -55,11 +55,6 @@ class Weather
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $visibility;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private string $weatherStatus;
 
     /**
@@ -72,6 +67,17 @@ class Weather
      * @ORM\JoinColumn(nullable=false)
      */
     private Language $language;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CityCoordinates::class, inversedBy="weather")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private CityCoordinates $cityCoordinates;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $icon;
 
     public function getId(): ?int
     {
@@ -162,18 +168,6 @@ class Weather
         return $this;
     }
 
-    public function getVisibility(): ?string
-    {
-        return $this->visibility;
-    }
-
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
     public function getWeatherStatus(): ?string
     {
         return $this->weatherStatus;
@@ -206,6 +200,30 @@ class Weather
     public function setLanguage(?Language $language): self
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    public function getCityCoordinates(): ?CityCoordinates
+    {
+        return $this->cityCoordinates;
+    }
+
+    public function setCityCoordinates(?CityCoordinates $cityCoordinates): self
+    {
+        $this->cityCoordinates = $cityCoordinates;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }
