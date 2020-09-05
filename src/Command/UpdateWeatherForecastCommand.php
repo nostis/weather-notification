@@ -13,7 +13,6 @@ class UpdateWeatherForecastCommand extends Command
     protected static $defaultName = 'app:update:weather-forecast-all';
 
     private WeatherUpdater $weatherUpdater;
-    private const UPDATE_HOUR = '10:05';
 
     public function __construct(WeatherUpdater $weatherUpdater, string $name = null)
     {
@@ -33,18 +32,10 @@ class UpdateWeatherForecastCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $dateTimeNow = new \DateTime();
+        $this->weatherUpdater->updateAllWeather();
 
-        if($dateTimeNow->format('H:i') == self::UPDATE_HOUR) {
-            $this->weatherUpdater->updateAllWeather();
+        $io->success('Successfully updated forecasts');
 
-            $io->success('Successfully updated forecasts');
-
-            return Command::SUCCESS;
-        }
-
-        $io->warning('Wrong time for update!');
-
-        return Command::FAILURE;
+        return Command::SUCCESS;
     }
 }
