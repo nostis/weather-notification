@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class SendWeatherForecastNewsletterCommand extends Command
+class SendWeatherForecastNewsletterCommand extends Command //@todo
 {
     protected static $defaultName = 'app:send:forecast:newsletter';
 
