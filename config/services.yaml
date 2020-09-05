@@ -6,6 +6,7 @@
 parameters:
     open_weather_api.url: '%env(OPEN_WEATHER_API_URL)%'
     open_weather_api.key: '%env(OPEN_WEATHER_API_KEY)%'
+    mailer_from: '%env(MAILER_FROM)%'
 services:
     # default configuration for services in *this* file
     _defaults:
