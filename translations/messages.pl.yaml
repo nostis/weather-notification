@@ -1,2 +1,13 @@
 mail:
   subject: Twoja prognoza pogody
+  greeting: Witaj
+  your_weather: Twoja pogoda na dziś w
+  weather:
+    sunrise: "Wschód:"
+    sunset: "Zachód:"
+    temperature: "Temperatura:"
+    pressure: "Ciśnienie:"
+    humidity: "Wilgotność:"
+    wind_speed: "Prędkość wiatru:"
+    weather_status: "Status:"
+    weather_description: "Opis:"

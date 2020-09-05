@@ -1,0 +1,20 @@
+<html>
+    {% set lang_code = customer.language.code %}
+    <div>
+        <p>{{ 'mail.greeting'|trans({},'messages', lang_code) }} {{ customer.name }}!</p>
+        <p>{{ 'mail.your_weather'|trans({},'messages', lang_code) }} {{ customer.cityCoordinates.city }}</p>
+    </div>
+    <div>
+        <p>{{ 'mail.weather.sunrise'|trans({},'messages', lang_code) }} {{ weather.sunrise|date('H:i') }}</p>
+        <p>{{ 'mail.weather.sunset'|trans({},'messages', lang_code) }} {{ weather.sunset|date('H:i')  }}</p>
+        <p>{{ 'mail.weather.temperature'|trans({},'messages', lang_code) }} {{ weather.temperature }} °C</p>
+        <p>{{ 'mail.weather.pressure'|trans({},'messages', lang_code) }} {{ weather.pressure }} hPa</p>
+        <p>{{ 'mail.weather.humidity'|trans({},'messages', lang_code) }} {{ weather.humidity }} %</p>
+        <p>{{ 'mail.weather.wind_speed'|trans({},'messages', lang_code) }} {{ weather.windSpeed }} km/h</p>
+        <p>{{ 'mail.weather.weather_status'|trans({},'messages', lang_code) }} {{ weather.weatherStatus }}</p>
+        <p>{{ 'mail.weather.weather_description'|trans({},'messages', lang_code) }} {{ weather.weatherDescription }}</p>
+    </div>
+    <div>
+        <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="weather_icon">
+    </div>
+</html>

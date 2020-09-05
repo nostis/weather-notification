@@ -1,2 +1,13 @@
 mail:
   subject: Your weather forecast
+  greeting: Hello
+  your_weather: Your weather for today in
+  weather:
+    sunrise: "Sunrise:"
+    sunset: "Sunset:"
+    temperature: "Temperature:"
+    pressure: "Pressure:"
+    humidity: "Humidity:"
+    wind_speed: "Wind speed:"
+    weather_status: "Status:"
+    weather_description: "Description:"

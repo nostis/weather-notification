@@ -28,7 +28,7 @@ class MailFactory
         return (new TemplatedEmail())
             ->from($this->params->get('mailer_from'))
             ->to($customer->getEmail())
-            ->subject($this->translator->trans('mail.subject'))
+            ->subject($this->translator->trans('mail.subject', [], 'messages', $customer->getLanguage()->getCode()))
             ->htmlTemplate('emails/weather_forecast.html.twig')
             ->context(['customer' => $customer, 'weather' => $weather])
             ;
