@@ -6,7 +6,6 @@ use App\Entity\Customer;
 use App\Entity\Weather;
 use App\Service\Mail\MailFactory;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Mailer\MailerInterface;
 
 class NotificationSender
@@ -26,23 +25,21 @@ class NotificationSender
     {
         $weather = $this->getWeatherForecastForCustomer($customer);
 
+        if(null === $weather) {
+            return;
+        }
+
         $this->sendMailNotification($customer, $weather);
     }
 
-    private function getWeatherForecastForCustomer(Customer $customer): Weather
+    private function getWeatherForecastForCustomer(Customer $customer): ?Weather
     {
-        $weather = $this->entityManager->getRepository(Weather::class)
+        return $this->entityManager->getRepository(Weather::class)
             ->findOneBy([
                 'cityCoordinates' => $customer->getCityCoordinates(),
                 'language' => $customer->getLanguage(),
                 'forecastForDate' => new \DateTime()
                 ]);
-
-        if($weather === null) {
-            throw new HttpException('404', 'No weather find for this customer');
-        }
-
-        return $weather;
     }
 
     private function sendMailNotification(Customer $customer, Weather $weather)
