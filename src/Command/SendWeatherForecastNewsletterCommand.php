@@ -37,11 +37,14 @@ class SendWeatherForecastNewsletterCommand extends Command //@todo
     {
         $io = new SymfonyStyle($input, $output);
 
+        $now = (new \DateTime())->format('Y-m-d H:i');
+        $nowWithZeroSeconds = new \DateTime($now);
+
         /**
          * @var Collection $customerToSendNotification
          */
         $customerToSendNotification = $this->entityManager->getRepository(Customer::class)
-            ->findBy(['notificationHour' => new \DateTime()]);
+            ->findBy(['notificationHour' => $nowWithZeroSeconds]);
 
         /**
          * @var Customer $customer
@@ -50,7 +53,7 @@ class SendWeatherForecastNewsletterCommand extends Command //@todo
             $this->notificationSender->sendNotification($customer);
         }
 
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $io->success('Successfully send mail notifications');
 
         return Command::SUCCESS;
     }
